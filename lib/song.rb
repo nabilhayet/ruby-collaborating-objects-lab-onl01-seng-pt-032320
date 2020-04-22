@@ -16,6 +16,7 @@ class Song
     array=song_filename.split(" - ")
     song=Song.new(song_filename[1])
     
+    
     ## We'll also want to associate that new song 
     with an artist. Use the artist attribute accessor 
     to assign this
