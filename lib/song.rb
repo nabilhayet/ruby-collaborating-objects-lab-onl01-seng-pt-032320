@@ -12,11 +12,14 @@ class Song
     @@all 
   end 
   
-  def self.new_by_filename(song_filename)
-    song_filename.chomp(".mp3").split(" - ")
-    b = Song.new(array[1])
-    b.artist_name=(array[0])
-  end
+  def self.new_by_filename(file_name)
+        song_name = file_name.split(" - ")[1]
+        artist_name = file_name.split(" - ")[0]
+        song = Song.new(song_name)
+        song.name = song_name
+        song.artist_name = artist_name
+        song
+    end 
   
   def artist_name=(name)
     artist=Artist.all.find{|e| e.name==name}
