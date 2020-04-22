@@ -16,12 +16,6 @@ class Song
     array=song_filename.chomp(".mp3").split(" - ")
     b = Song.new(array[1])
     b.artist_name=(array[0])
-    
-    
-    ## We'll also want to associate that new song 
-    with an artist. Use the artist attribute accessor 
-    to assign this
-    song 
   end
   
   def artist_name=(name)
