@@ -14,7 +14,7 @@ class Song
   
   def self.new_by_filename(song_filename)
     array=song_filename.split(" - ")
-    song=Song.new(array[1])
+    array.chop(".mp3")
     Song.artist = array[0]
   
     
