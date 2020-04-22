@@ -1,5 +1,6 @@
+require 'pry'
 class Song 
-  attr_accessor :name, :song_artist 
+  attr_accessor :name, :artist 
   @@all =[]
   
   def initialize(song_name)
@@ -11,8 +12,8 @@ class Song
     @@all 
   end 
   
-  def new_by_filename(song_filename)
-    song_filename.split("-")
+  def self.new_by_filename(song_filename)
+    array=song_filename.split(" - ")
     song=Song.new(song_filename[1])
     
     ## We'll also want to associate that new song 
@@ -21,7 +22,13 @@ class Song
     song 
   end
   
-  def artist_name 
-  
-  end
+  def artist_name=(name)
+    artist=Artist.all.find{|e| e.name==name}
+      if artist 
+        self.artist = artist
+      else 
+        art=Artist.new(name)
+        self.artist=art 
+      end
+  end 
 end 
