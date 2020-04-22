@@ -1,5 +1,6 @@
+require 'pry'
 class Song 
-  attr_accessor :name, :song_artist 
+  attr_accessor :name, :artist 
   @@all =[]
   
   def initialize(song_name)
@@ -11,17 +12,22 @@ class Song
     @@all 
   end 
   
-  def new_by_filename(song_filename)
-    song_filename.split("-")
-    song=Song.new(song_filename[1])
-    
-    ## We'll also want to associate that new song 
-    with an artist. Use the artist attribute accessor 
-    to assign this
-    song 
-  end
+  def self.new_by_filename(file_name)
+        song_name = file_name.split(" - ")[1]
+        artist_name = file_name.split(" - ")[0]
+        song = Song.new(song_name)
+        song.name = song_name
+        song.artist_name = artist_name
+        song
+    end 
   
-  def artist_name 
-  
-  end
+  def artist_name=(name)
+    artist=Artist.all.find{|e| e.name==name}
+      if artist 
+        self.artist = artist
+      else 
+        art=Artist.new(name)
+        self.artist=art 
+      end
+  end 
 end 

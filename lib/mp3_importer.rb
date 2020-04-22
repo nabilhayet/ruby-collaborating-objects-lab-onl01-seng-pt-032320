@@ -1,15 +1,20 @@
 class MP3Importer
-
-  def initialize(filename)
-    @file = filename
-    filename.split("-")
+  attr_accessor :path 
+  def initialize(path)
+    @path = path 
   end
   
   def files 
-  
+    files=[]
+    Dir.new(self.path).each do |file|
+      files << file if file.length > 4
+    end
+    files 
   end 
   
-  def import 
-    Song.new_by_filename(some_filename)
+  def import
+    files.each do |filename|
+    Song.new_by_filename(filename)
   end
+end 
 end
